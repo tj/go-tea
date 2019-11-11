@@ -1,3 +1,4 @@
+// Package option provides an option list with a single selectable value.
 package option
 
 import (

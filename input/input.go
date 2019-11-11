@@ -1,3 +1,4 @@
+// Package input provides a text input.
 package input
 
 import (

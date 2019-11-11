@@ -1,3 +1,4 @@
+// Package viewport provides a scrollable view into content.
 package viewport
 
 import (
