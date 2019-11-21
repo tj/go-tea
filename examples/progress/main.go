@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strings"
@@ -52,6 +54,8 @@ func request(url string) tea.Cmd {
 			return err
 		}
 		defer res.Body.Close()
+
+		io.Copy(ioutil.Discard, res.Body)
 
 		return requestCompleted{
 			StatusCode: res.StatusCode,
