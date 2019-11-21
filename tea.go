@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"strings"
 
 	"github.com/pkg/term"
 	"github.com/tj/go-terminput"
@@ -74,9 +75,14 @@ func Batch(cmds ...Cmd) Cmd {
 // Program is a terminal application comprised init,
 // update, and view functions.
 type Program struct {
-	init   Init
-	update Update
-	view   View
+	// Init function.
+	Init
+
+	// Update function.
+	Update
+
+	// View function.
+	View
 
 	rw io.ReadWriter
 }
@@ -84,9 +90,9 @@ type Program struct {
 // NewProgram returns a new program.
 func NewProgram(init Init, update Update, view View) *Program {
 	return &Program{
-		init:   init,
-		update: update,
-		view:   view,
+		Init:   init,
+		Update: update,
+		View:   view,
 	}
 }
 
@@ -106,9 +112,6 @@ func (p *Program) Start(ctx context.Context) error {
 	// hide cursor
 	hideCursor()
 	defer showCursor()
-
-	// clear
-	defer clear()
 
 	return p.start(ctx)
 }
@@ -157,12 +160,12 @@ func (p *Program) start(ctx context.Context) error {
 	}()
 
 	// initialize app
-	model, cmd := p.init(ctx)
+	model, cmd := p.Init(ctx)
 	cmds <- cmd
 
-	// draw
-	clear()
-	io.WriteString(p.rw, p.view(ctx, model))
+	// draw the initial view
+	prev := p.View(ctx, model)
+	io.WriteString(p.rw, prev)
 
 	// draw loop. We process msgs, passing them
 	// to the Update() function followed by the
@@ -194,12 +197,14 @@ func (p *Program) start(ctx context.Context) error {
 			}
 
 			// update
-			model, cmd = p.update(ctx, msg, model)
+			model, cmd = p.Update(ctx, msg, model)
 			cmds <- cmd
 
-			// draw
-			clear()
-			io.WriteString(p.rw, p.view(ctx, model))
+			// render view changes
+			curr := p.View(ctx, model)
+			clearLines(strings.Count(prev, "\r\n") + 1)
+			io.WriteString(p.rw, curr)
+			prev = curr
 		}
 	}
 }
@@ -212,6 +217,25 @@ func hideCursor() {
 // showCursor shows the cursor.
 func showCursor() {
 	fmt.Printf("\033[?25h")
+}
+
+// clearLines clears a number of lines.
+func clearLines(n int) {
+	fmt.Printf("%#v\n", n)
+	for i := 0; i < n; i++ {
+		moveUp(1)
+		clearLine()
+	}
+}
+
+// clearLine clears the entire line.
+func clearLine() {
+	fmt.Printf("\033[2K")
+}
+
+// moveUp moves the cursor to the beginning of n lines up.
+func moveUp(n int) {
+	fmt.Printf("\033[%dF", n)
 }
 
 // clear the screen.
