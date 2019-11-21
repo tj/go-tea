@@ -7,8 +7,6 @@ import (
 	"strings"
 )
 
-// ████████████░░| 93%
-
 // Model is the progress bar model.
 type Model struct {
 	// Filled bar character, defaulting to '█'.

@@ -1,4 +1,10 @@
 
+v0.3.0 / 2019-11-21
+===================
+
+  * add progress and example
+  * docs: add mention of inline
+
 v0.2.0 / 2019-11-21
 ===================
 

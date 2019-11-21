@@ -32,7 +32,7 @@ func initialize(ctx context.Context) (tea.Model, tea.Cmd) {
 	return Model{
 		URL:           url,
 		Iteration:     0,
-		MaxIterations: 100,
+		MaxIterations: 500,
 	}, request(url)
 }
 
