@@ -1,6 +1,6 @@
 # Tea
 
- Tea provides an Elm inspired functional framework for interactive command-line programs.
+ Tea provides an Elm inspired functional framework for interactive command-line programs. Works great for inline and full-screen interactivity.
  
 ## Examples
 
