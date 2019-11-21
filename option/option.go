@@ -51,9 +51,9 @@ func View(m Model) string {
 
 	for i, option := range m.Options {
 		if i == m.Selected {
-			fmt.Fprintf(w, "  \033[1m%s\033[m\r\n", option)
+			fmt.Fprintf(w, "  \033[1m%s\033[m\n", option)
 		} else {
-			fmt.Fprintf(w, "  %s\r\n", option)
+			fmt.Fprintf(w, "  %s\n", option)
 		}
 	}
 

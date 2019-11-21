@@ -67,9 +67,9 @@ func View(m Model) string {
 		}
 
 		if isSelected(m, i) {
-			fmt.Fprintf(w, "  ■ %s\r\n", option)
+			fmt.Fprintf(w, "  ■ %s\n", option)
 		} else {
-			fmt.Fprintf(w, "  □ %s\r\n", option)
+			fmt.Fprintf(w, "  □ %s\n", option)
 		}
 
 		if i == m.index {

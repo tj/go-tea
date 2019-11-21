@@ -117,12 +117,12 @@ func view(ctx context.Context, model tea.Model) string {
 	m := model.(Model)
 
 	// padding
-	fmt.Fprintf(w, "\r\n")
-	defer fmt.Fprintf(w, "\r\n")
+	fmt.Fprintf(w, "\n")
+	defer fmt.Fprintf(w, "\n")
 
 	// help
 	if !m.AddingItem {
-		fmt.Fprintf(w, "  Use the arrows to navigate, backspace to remove, and 'q' to exit.\r\n\r\n")
+		fmt.Fprintf(w, "  Use the arrows to navigate, backspace to remove, and 'q' to exit.\n\n")
 	}
 
 	// adding
@@ -136,9 +136,9 @@ func view(ctx context.Context, model tea.Model) string {
 
 	// add button
 	if m.FocusingAddItem {
-		fmt.Fprintf(w, "\r\n  \033[1mAdd Item\033[m\r\n")
+		fmt.Fprintf(w, "\n  \033[1mAdd Item\033[m\n")
 	} else {
-		fmt.Fprintf(w, "\r\n  Add Item\r\n")
+		fmt.Fprintf(w, "\n  Add Item\n")
 	}
 
 	return w.String()
@@ -148,6 +148,6 @@ func main() {
 	program := tea.NewProgram(initialize, update, view)
 	err := program.Start(context.Background())
 	if err != nil {
-		log.Fatalf("error: %s\r\n", err)
+		log.Fatalf("error: %s\n", err)
 	}
 }

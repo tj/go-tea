@@ -69,12 +69,12 @@ func View(m Model) string {
 	for i, option := range m.Items {
 		if i == m.Selected && !m.Disabled {
 			if m.Removing {
-				fmt.Fprintf(w, "  \033[1;31m%s (press again to confirm removal)\033[m\r\n", option)
+				fmt.Fprintf(w, "  \033[1;31m%s (press again to confirm removal)\033[m\n", option)
 			} else {
-				fmt.Fprintf(w, "  \033[1m%s\033[m\r\n", option)
+				fmt.Fprintf(w, "  \033[1m%s\033[m\n", option)
 			}
 		} else {
-			fmt.Fprintf(w, "  %s\r\n", option)
+			fmt.Fprintf(w, "  %s\n", option)
 		}
 	}
 

@@ -164,7 +164,7 @@ func (p *Program) start(ctx context.Context) error {
 	cmds <- cmd
 
 	// draw the initial view
-	prev := p.View(ctx, model)
+	prev := normalize(p.View(ctx, model))
 	io.WriteString(p.rw, prev)
 
 	// draw loop. We process msgs, passing them
@@ -201,12 +201,17 @@ func (p *Program) start(ctx context.Context) error {
 			cmds <- cmd
 
 			// render view changes
-			curr := p.View(ctx, model)
+			curr := normalize(p.View(ctx, model))
 			clearLines(strings.Count(prev, "\r\n") + 1)
 			io.WriteString(p.rw, curr)
 			prev = curr
 		}
 	}
+}
+
+// normalize .
+func normalize(s string) string {
+	return strings.Replace(s, "\n", "\r\n", -1)
 }
 
 // hideCursor hides the cursor.

@@ -42,11 +42,11 @@ func Update(msg tea.Msg, m Model) Model {
 
 // View function.
 func View(m Model, content string) string {
-	lines := strings.Split(content, "\r\n")
+	lines := strings.Split(content, "\n")
 	from := m.ScrollY
 	to := m.ScrollY + m.Height
 	lines = bounded(lines, from, to)
-	return strings.Join(lines, "\r\n")
+	return strings.Join(lines, "\n")
 }
 
 // bounded slice.

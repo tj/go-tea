@@ -74,14 +74,14 @@ func view(ctx context.Context, model tea.Model) string {
 	m := model.(Model)
 
 	// padding
-	fmt.Fprintf(w, "\r\n")
-	defer fmt.Fprintf(w, "\r\n")
+	fmt.Fprintf(w, "\n")
+	defer fmt.Fprintf(w, "\n")
 
 	// input
 	if m.Selected {
-		fmt.Fprintf(w, "  You chose: %s\r\n", m.Option.Value())
+		fmt.Fprintf(w, "  You chose: %s\n", m.Option.Value())
 	} else {
-		fmt.Fprintf(w, "  Choose your favorite pet:\r\n\r\n")
+		fmt.Fprintf(w, "  Choose your favorite pet:\n\n")
 		fmt.Fprintf(w, "%s", option.View(m.Option))
 	}
 
@@ -92,6 +92,6 @@ func main() {
 	program := tea.NewProgram(initialize, update, view)
 	err := program.Start(context.Background())
 	if err != nil {
-		log.Fatalf("error: %s\r\n", err)
+		log.Fatalf("error: %s\n", err)
 	}
 }

@@ -88,19 +88,19 @@ func update(ctx context.Context, msg tea.Msg, model tea.Model) (tea.Model, tea.C
 func view(ctx context.Context, model tea.Model) string {
 	m := model.(Model)
 	var w strings.Builder
-	fmt.Fprintf(&w, "\r\n")
+	fmt.Fprintf(&w, "\n")
 	if m.Progress.Percent < 1 {
-		fmt.Fprintf(&w, "  Benchmarking \033[1m%s\033[m\r\n\r\n", m.URL)
-		fmt.Fprintf(&w, "  %s\r\n\r\n", progress.View(m.Progress))
-		fmt.Fprintf(&w, "   Request: %d of %d\r\n", m.Iteration, m.MaxIterations)
-		fmt.Fprintf(&w, "    Status: %d\r\n", m.Previous.StatusCode)
-		fmt.Fprintf(&w, "  Duration: %s\r\n", m.Previous.Duration.Round(time.Millisecond))
+		fmt.Fprintf(&w, "  Benchmarking \033[1m%s\033[m\n\n", m.URL)
+		fmt.Fprintf(&w, "  %s\n\n", progress.View(m.Progress))
+		fmt.Fprintf(&w, "   Request: %d of %d\n", m.Iteration, m.MaxIterations)
+		fmt.Fprintf(&w, "    Status: %d\n", m.Previous.StatusCode)
+		fmt.Fprintf(&w, "  Duration: %s\n", m.Previous.Duration.Round(time.Millisecond))
 	} else {
-		fmt.Fprintf(&w, "  Min: %s\r\n", min(m.Durations).Round(time.Millisecond))
-		fmt.Fprintf(&w, "  Avg: %s\r\n", avg(m.Durations).Round(time.Millisecond))
-		fmt.Fprintf(&w, "  Max: %s\r\n", max(m.Durations).Round(time.Millisecond))
+		fmt.Fprintf(&w, "  Min: %s\n", min(m.Durations).Round(time.Millisecond))
+		fmt.Fprintf(&w, "  Avg: %s\n", avg(m.Durations).Round(time.Millisecond))
+		fmt.Fprintf(&w, "  Max: %s\n", max(m.Durations).Round(time.Millisecond))
 	}
-	fmt.Fprintf(&w, "\r\n")
+	fmt.Fprintf(&w, "\n")
 	return w.String()
 }
 
@@ -143,6 +143,6 @@ func main() {
 	program := tea.NewProgram(initialize, update, view)
 	err := program.Start(context.Background())
 	if err != nil {
-		log.Fatalf("error: %s\r\n", err)
+		log.Fatalf("error: %s\n", err)
 	}
 }
