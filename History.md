@@ -1,4 +1,10 @@
 
+v0.4.0 / 2019-11-21
+===================
+
+  * examples: add discarding of body
+  * add translation of \n to \r\n
+
 v0.3.0 / 2019-11-21
 ===================
 
