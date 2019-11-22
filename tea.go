@@ -226,7 +226,6 @@ func showCursor() {
 
 // clearLines clears a number of lines.
 func clearLines(n int) {
-	fmt.Printf("%#v\n", n)
 	for i := 0; i < n; i++ {
 		moveUp(1)
 		clearLine()
