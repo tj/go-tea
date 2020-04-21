@@ -202,7 +202,7 @@ func (p *Program) start(ctx context.Context) error {
 
 			// render view changes
 			curr := normalize(p.View(ctx, model))
-			clearLines(strings.Count(prev, "\r\n") + 1)
+			clearLines(strings.Count(prev, "\r\n"))
 			io.WriteString(p.rw, curr)
 			prev = curr
 		}
