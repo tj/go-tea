@@ -1,4 +1,4 @@
-// Package spinner provides a spinner.
+// Package spinner provides a frame-based textual spinner.
 package spinner
 
 import (
