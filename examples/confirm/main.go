@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/tj/go-tea"
 	"github.com/tj/go-tea/input"
@@ -64,12 +65,19 @@ func view(ctx context.Context, model tea.Model) string {
 
 	// confirm
 	if m.Confirmed {
-		fmt.Fprintf(w, "  Deleted %q.", m.ProjectID)
+		fmt.Fprintf(w, "  Deleted %q.\n\n", m.ProjectID)
+	} else if !strings.HasPrefix(m.ProjectID, m.Confirm.Value) {
+		fmt.Fprintf(w, "  Enter %q to confirm deletion: %s\n", m.ProjectID, red(input.View(m.Confirm)))
 	} else {
-		fmt.Fprintf(w, "  Enter %q to confirm deletion: %s", m.ProjectID, input.View(m.Confirm))
+		fmt.Fprintf(w, "  Enter %q to confirm deletion: %s\n", m.ProjectID, input.View(m.Confirm))
 	}
 
 	return w.String()
+}
+
+// red string.
+func red(s string) string {
+	return fmt.Sprintf("\033[31m%s\033[0m", s)
 }
 
 // bell sound.

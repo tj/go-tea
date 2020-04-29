@@ -35,7 +35,7 @@ func update(ctx context.Context, msg tea.Msg, model tea.Model) (tea.Model, tea.C
 		switch msg.Key() {
 		case terminput.KeyEnter:
 			m.Editing = false
-			return m, nil
+			return m, tea.Quit
 		case terminput.KeyEscape:
 			return m, tea.Quit
 		case terminput.KeyRune:
@@ -60,9 +60,9 @@ func view(ctx context.Context, model tea.Model) string {
 
 	// editing
 	if m.Editing {
-		fmt.Fprintf(w, "  Enter your name: %s", input.View(m.Input))
+		fmt.Fprintf(w, "  Enter your name: %s\n", input.View(m.Input))
 	} else {
-		fmt.Fprintf(w, "  Hello %s!", m.Input.Value)
+		fmt.Fprintf(w, "  Hello %s!\n\n", m.Input.Value)
 	}
 
 	return w.String()
