@@ -8,8 +8,13 @@ import (
 	"github.com/tj/go-tea"
 )
 
-// Tick message.
-type Tick struct{}
+// Msg is a spinner message.
+type Msg int
+
+// Messages supported.
+const (
+	Tick Msg = iota
+)
 
 // DefaultInterval is the default animation interval used.
 var DefaultInterval = time.Millisecond * 75
@@ -39,7 +44,7 @@ func Update(msg tea.Msg, m Model) (Model, tea.Cmd) {
 		interval = DefaultInterval
 	}
 
-	if _, ok := msg.(Tick); ok {
+	if msg == Tick {
 		m.tick++
 		return m, tick(interval)
 	}
@@ -61,6 +66,6 @@ func View(m Model) string {
 func tick(d time.Duration) tea.Cmd {
 	return func(ctx context.Context) tea.Msg {
 		time.Sleep(d)
-		return Tick{}
+		return Tick
 	}
 }

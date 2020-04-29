@@ -18,7 +18,7 @@ type Model struct {
 // initialize function.
 func initialize(ctx context.Context) (tea.Model, tea.Cmd) {
 	return Model{}, func(ctx context.Context) tea.Msg {
-		return spinner.Tick{}
+		return spinner.Tick
 	}
 }
 
