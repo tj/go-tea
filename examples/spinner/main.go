@@ -10,11 +10,6 @@ import (
 	"github.com/tj/go-terminput"
 )
 
-// start command.
-func start(ctx context.Context) tea.Msg {
-	return nil
-}
-
 // Model struct.
 type Model struct {
 	Spinner spinner.Model
@@ -22,10 +17,9 @@ type Model struct {
 
 // initialize function.
 func initialize(ctx context.Context) (tea.Model, tea.Cmd) {
-	// the start command is only necessary to trigger an update() below,
-	// which in turn allows spinner.Update() to advance the frame. The
-	// start command itself doesn't do anything.
-	return Model{}, start
+	return Model{}, func(ctx context.Context) tea.Msg {
+		return spinner.Tick{}
+	}
 }
 
 // update function.

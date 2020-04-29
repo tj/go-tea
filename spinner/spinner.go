@@ -8,13 +8,8 @@ import (
 	"github.com/tj/go-tea"
 )
 
-// internal message.
-type internalMsg int
-
-// internal messages.
-const (
-	tickMsg internalMsg = iota
-)
+// Tick message.
+type Tick struct{}
 
 // DefaultInterval is the default animation interval used.
 var DefaultInterval = time.Millisecond * 75
@@ -44,11 +39,12 @@ func Update(msg tea.Msg, m Model) (Model, tea.Cmd) {
 		interval = DefaultInterval
 	}
 
-	if msg == tickMsg {
+	if _, ok := msg.(Tick); ok {
 		m.tick++
+		return m, tick(interval)
 	}
 
-	return m, tick(interval)
+	return m, nil
 }
 
 // View function.
@@ -65,6 +61,6 @@ func View(m Model) string {
 func tick(d time.Duration) tea.Cmd {
 	return func(ctx context.Context) tea.Msg {
 		time.Sleep(d)
-		return tickMsg
+		return Tick{}
 	}
 }
