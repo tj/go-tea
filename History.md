@@ -1,4 +1,10 @@
 
+v0.5.0 / 2020-04-29
+===================
+
+  * add spinner component
+  * add confirmation example
+
 v0.4.2 / 2020-04-21
 ===================
 
