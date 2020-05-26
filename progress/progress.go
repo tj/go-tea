@@ -29,7 +29,7 @@ func View(m Model) string {
 		w = 24
 	}
 	f := defaultString(m.Filled, "█")
-	e := defaultString(m.Filled, "░")
+	e := defaultString(m.Empty, "░")
 	nf := int(math.Ceil(float64(w) * m.Percent))
 	ne := w - nf
 	bar := strings.Repeat(f, nf) + strings.Repeat(e, ne)
