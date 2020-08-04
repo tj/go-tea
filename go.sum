@@ -1,3 +1,5 @@
+github.com/apex/apex v0.16.0 h1:tpByjslO1YQw7VxGFAGgnGjVFxdda9aT3GucB0j4rwc=
+github.com/apex/apex v0.16.0/go.mod h1:kof13vptkdeeeQe+P1xgCKzHCq2L7/Il8QM1HfjI7qY=
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfVYBRgL+9YlvaHOwJU=
 github.com/pkg/term v0.0.0-20190109203006-aa71e9d9e942 h1:A7GG7zcGjl3jqAqGPmcNjd/D9hzL95SuoOQAaFNdLU0=
