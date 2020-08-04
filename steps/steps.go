@@ -36,7 +36,7 @@ func View(m Model) (s string) {
 
 	// progress bar
 	for i := range m.Steps {
-		complete := i < m.Step
+		complete := i <= m.Step
 
 		if complete {
 			s += stepCompletedChar
